@@ -17,7 +17,7 @@ th_init = [0.3302   5.4819   0       0.2037   0;
        2.4526  15.8935  -1.2000  0        2.6342;
        0.0163  -0.2506   0       0.0511   0;
        0.2441   1.2650   0      -0.8091   0];
-[it, jt, th0] = find(th_init); shp = @(th) sparse(it, jt, th);
+[it, jt, th0] = find(th_init); shp = @(th) full(sparse(it, jt, th));
 
 % now minimize loss with given initial values, 150 iterations is quite low
 % but I use the example code's optimset to obtain exact results
