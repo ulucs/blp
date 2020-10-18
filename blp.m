@@ -13,12 +13,11 @@ vs = widens(v); ds = widens(demogr);
 IV = [iv(:,2:(n_inst+1)) x1(:,2:(nbrn+1))];
 
 % define the initial values and the enforced shape: zeros are by design
-thi = [0.3302   5.4819   0       0.2037   0;
+th_init = [0.3302   5.4819   0       0.2037   0;
        2.4526  15.8935  -1.2000  0        2.6342;
        0.0163  -0.2506   0       0.0511   0;
        0.2441   1.2650   0      -0.8091   0];
-th0 = thi(thi ~= 0); % could I do the next line better?
-shp = @(th) [th(1:4), th(5:8), [0;th(9);0;0], [th(10);0;th(11:12)], [0;th(13);0;0]];
+[it, jt, th0] = find(th_init); shp = @(th) sparse(it, jt, th);
 
 % now minimize loss with given initial values, 150 iterations is quite low
 % but I use the example code's optimset to obtain exact results
